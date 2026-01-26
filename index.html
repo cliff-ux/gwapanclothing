@@ -7,7 +7,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>GWAPAFFECTION-CLOTHING</title>
     <style>
-        /* --- General Reset --- */
+        /* --- General Reset & Variables --- */
+        :root {
+            --brand-maroon: #800000;
+            --brand-black: #000000;
+            --bg-light: #f8f8f8;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -16,226 +22,257 @@
 
         body {
             font-family: 'Times New Roman', Times, serif;
-            background-color: #f4f4f4;
+            background-color: var(--bg-light);
             line-height: 1.6;
-            overflow-x: hidden;
+            color: #333;
         }
 
-        /* --- Responsive Navbar --- */
+        /* --- Navbar --- */
         .navbar {
-            background-color: black;
-            padding: 10px 0;
+            background-color: var(--brand-black);
+            padding: 15px 0;
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
         .navbar .container {
-            width: 95%;
+            width: 92%;
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
-            color: maroon;
+            color: var(--brand-maroon);
             text-decoration: none;
-            letter-spacing: 1px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        .nav-links {
-            list-style: none;
+        .nav-right {
             display: flex;
             align-items: center;
             gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .nav-links a {
-            color: #f4f4f4;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 5px 10px;
-            transition: 0.3s;
-            font-size: 16px;
-        }
-
-        .nav-links a:hover {
-            color: red;
         }
 
         .nav-search input {
-            padding: 8px;
-            border-radius: 4px;
-            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid #444;
+            background: #111;
+            color: white;
             outline: none;
-            width: 180px;
-            font-family: inherit;
+            width: 140px;
+            transition: 0.3s;
         }
 
-        /* --- Hero Header --- */
-        .home-header {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://www.icebox.com/themes/default/frontend/oct-2023/assets/avif/homebanner-accessories.avif');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 140px 20px 60px;
-            text-align: center;
+        .nav-search input:focus {
+            width: 200px;
+            border-color: var(--brand-maroon);
+        }
+
+        .cart-link {
+            color: #f4f4f4;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        /* --- Hero --- */
+        /* --- Hero --- */
+.home-header {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                url('https://i.ibb.co/xq1GPZ5m/image5-2.png');
+    background-size: cover;
+    background-position: center;
+    /* Reduced top/bottom padding to make it "Medium" height */
+    padding: 100px 20px 60px; 
+    text-align: center;
+    color: white;
+    /* Ensures it doesn't stretch too deep on large screens */
+    min-height: 300px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+        .home-header p {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .home-header p::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--brand-maroon);
+            margin: 15px auto 0;
+        }
+
+        .home-header p {
+            position: relative;
+        }
+
+        .home-header p::after {
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+}
         }
 
         .home-header h1 {
-            font-size: clamp(1.8rem, 5vw, 3rem);
-            margin-bottom: 15px;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            margin-bottom: 10px;
+            letter-spacing: 4px;
         }
 
         .shop-now-button {
             display: inline-block;
-            background-color: maroon;
+            background-color: var(--brand-maroon);
             color: white;
-            padding: 12px 25px;
+            padding: 14px 30px;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 4px;
             margin-top: 20px;
             font-weight: bold;
             transition: 0.3s;
+            text-transform: uppercase;
         }
 
         /* --- Product Grid --- */
         .product-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 25px;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
             padding: 40px 0;
         }
 
         .product {
             background: white;
-            border: 1px solid #ddd;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            flex: 1 1 300px;
-            max-width: 350px;
+            border: 1px solid #eee;
+            padding: 20px;
+            border-radius: 12px;
             text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .product.hidden {
-            display: none;
+            transition: 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .product:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
         .product img {
             width: 100%;
-            height: 320px;
+            height: 350px;
             object-fit: cover;
-            border-radius: 5px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+        }
+
+        .price-tag {
+            font-weight: bold;
+            color: var(--brand-maroon);
+            font-size: 1.4rem;
             margin-bottom: 15px;
         }
 
         .size-select {
             width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            font-family: inherit;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            background: #fafafa;
         }
 
-        .price-tag {
-            font-weight: bold;
-            color: maroon;
-            font-size: 1.2rem;
-            margin: 10px 0;
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .quantity-input {
+            width: 60px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            text-align: center;
         }
 
         .add-to-cart {
-            background-color: maroon;
+            background-color: var(--brand-maroon);
             color: white;
             border: none;
-            padding: 12px 20px;
+            padding: 12px;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 6px;
             font-weight: bold;
-            width: 100%;
+            flex: 1;
             transition: 0.3s;
         }
 
         .add-to-cart:hover {
-            background-color: #800000;
+            background-color: #5a0000;
         }
 
-        /* --- Sidebar Cart --- */
+        .product.hidden { display: none; }
+
+        /* --- Sidebar --- */
         #cart-sidebar {
             position: fixed;
-            right: -400px;
+            right: -100%;
             top: 0;
             width: 100%;
-            max-width: 380px;
+            max-width: 400px;
             height: 100%;
             background: white;
-            transition: 0.4s ease-in-out;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 2000;
-            padding: 25px;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.2);
             overflow-y: auto;
         }
 
-        /* Checkout Form inside Cart */
-        .checkout-form {
-            margin-top: 20px;
-            padding: 15px;
-            background: #f9f9f9;
-            border-radius: 8px;
-            border: 1px solid #eee;
-        }
-
-        .checkout-form input {
-            width: 100%;
-            padding: 12px;
-            margin: 5px 0 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-
+        /* --- Footer --- */
         footer {
-            background-color: black;
-            color: white;
-            padding: 40px 20px;
+            background-color: var(--brand-black);
+            color: #888;
+            padding: 50px 20px;
             text-align: center;
-            margin-top: 50px;
+            margin-top: 60px;
         }
 
+        /* --- Responsive View --- */
         @media (max-width: 768px) {
-            .navbar .container {
-                flex-direction: column;
+            .product-list {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
                 gap: 15px;
             }
-
-            .nav-search input {
-                width: 100%;
-            }
-
-            .home-header {
-                padding-top: 180px;
-            }
-
-            .product {
-                flex: 1 1 100%;
-            }
+            .product img { height: 220px; }
+            .product-name { font-size: 0.9rem; height: 40px; }
+            .nav-search input { width: 100px; }
+            .nav-search input:focus { width: 120px; }
         }
     </style>
 </head>
@@ -244,30 +281,30 @@
 
     <nav class="navbar">
         <div class="container">
-            <a href="#" class="logo">*Mavazi*</a>
-            <ul class="nav-links">
-                <li><a href="#">Smart Deals!</a></li>
-                <li>
-                    <div class="nav-search"><input type="text" id="productSearch" placeholder="Search merchandise..."
-                            onkeyup="filterProducts()"></div>
-                </li>
-                <li><a href="#" onclick="toggleCart()" class="cart-link">Cart (<span id="cart-count">0</span>)</a></li>
-            </ul>
+            <a href="#" class="logo">Mavazi</a>
+            <div class="nav-right">
+                <div class="nav-search">
+                    <input type="text" id="productSearch" placeholder="Search..." onkeyup="filterProducts()">
+                </div>
+                <a href="#" onclick="toggleCart()" class="cart-link">
+                    <i class="fas fa-shopping-bag"></i> (<span id="cart-count">0</span>)
+                </a>
+            </div>
         </div>
     </nav>
 
     <div class="home-header">
         <div class="container">
-            <h1>GWAPAFFECTION-CLOTHING</h1>
-            <p>Handcrafted trends. Premium Quality. Unique Style.</p>
+            <h1>GWAPAFFECTION</h1>
+            <p>HANDCRAFTED TRENDS. PREMIUM CRAFT. UNIQUE STYLE.</p>
             <a href="https://wa.me/254797389370" target="_blank" class="shop-now-button">Chat on WhatsApp</a>
         </div>
     </div>
 
     <main class="container" style="width: 90%; margin: 40px auto;">
-        <h2 style="text-align: center; color: maroon; margin-bottom: 10px;">MERCHANDISE</h2>
-        <p id="noResults" style="text-align: center; display: none; color: #666;">No products found matching your
-            search.</p>
+        <h2 style="text-align: center; color: var(--brand-maroon); margin-bottom: 30px; text-transform: uppercase; letter-spacing: 2px;">DENIM Merchandise</h2>
+        
+        <p id="noResults" style="text-align: center; display: none; color: #666; padding: 40px;">No matches found.</p>
 
         <div class="product-list" id="productGrid">
             <div class="product">
@@ -280,8 +317,8 @@
                     <option value="L">Large (L)</option>
                     <option value="XL">Extra Large (XL)</option>
                 </select>
-                <div style="margin-bottom: 15px; display: flex; gap: 5px;">
-                    <input type="number" min="1" value="1" class="quantity-input" style="width: 60px; padding: 5px;">
+                <div class="product-actions">
+                    <input type="number" min="1" value="1" class="quantity-input">
                     <button onclick="addToCart('CUSTOM PANTS', 1800, this)" class="add-to-cart">Add to Cart</button>
                 </div>
             </div>
@@ -296,8 +333,8 @@
                     <option value="L">Large (L)</option>
                     <option value="XL">Extra Large (XL)</option>
                 </select>
-                <div style="margin-bottom: 15px; display: flex; gap: 5px;">
-                    <input type="number" min="1" value="1" class="quantity-input" style="width: 60px; padding: 5px;">
+                <div class="product-actions">
+                    <input type="number" min="1" value="1" class="quantity-input">
                     <button onclick="addToCart('DENIM SHIRT', 1200, this)" class="add-to-cart">Add to Cart</button>
                 </div>
             </div>
@@ -313,31 +350,66 @@
                     <option value="34">34</option>
                     <option value="36">36</option>
                 </select>
-                <div style="margin-bottom: 15px; display: flex; gap: 5px;">
-                    <input type="number" min="1" value="1" class="quantity-input" style="width: 60px; padding: 5px;">
+                <div class="product-actions">
+                    <input type="number" min="1" value="1" class="quantity-input">
                     <button onclick="addToCart('JORTS', 1500, this)" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <h3 class="product-name">GWAPAN-JACKET</h3>
+                <img src="https://i.ibb.co/3mKSFbmC/IMG-2694.jpg" alt="Jacket">
+                <p class="price-tag">SH. 1550</p>
+                <select class="size-select">
+                    <option value="38S">38 Short</option>
+                    <option value="40R" selected>40 Regular</option>
+                    <option value="42R">42 Regular</option>
+                    <option value="44L">44 Long</option>
+                </select>
+                <div class="product-actions">
+                    <input type="number" min="1" value="1" class="quantity-input">
+                    <button onclick="addToCart('JACKET', 1550, this)" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product">
+                <h3 class="product-name">GWAPAN-PLAIN-PANTS</h3>
+                <img src="https://i.ibb.co/Wv3gNWsz/IMG-2434.jpg" alt="Plain Pants">
+                <p class="price-tag">SH. 1850</p>
+                <select class="size-select">
+                    <option value="28">28</option>
+                    <option value="32" selected>32</option>
+                    <option value="36">36</option>
+                </select>
+                <div class="product-actions">
+                    <input type="number" min="1" value="1" class="quantity-input">
+                    <button onclick="addToCart('PLAIN PANTS', 1850, this)" class="add-to-cart">Add to Cart</button>
                 </div>
             </div>
         </div>
     </main>
 
     <div id="cart-sidebar">
-        <button onclick="toggleCart()"
-            style="float: right; cursor: pointer; background: maroon; color: white; border: none; padding: 8px 12px; border-radius: 5px;">Close</button>
-        <h2 style="margin-bottom: 20px; border-bottom: 2px solid maroon; padding-bottom: 10px;">Your Cart</h2>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+            <h2 style="border-bottom: 3px solid var(--brand-maroon);">Your Bag</h2>
+            <button onclick="toggleCart()" style="background: none; border: none; font-size: 24px; cursor: pointer;">&times;</button>
+        </div>
+        
         <div id="cart-display-area"></div>
 
         <div id="checkout-section">
-            <div class="checkout-form">
-                <label style="font-weight: bold; color: maroon;">Full Name:</label>
-                <input type="text" id="customer-name" placeholder="Enter your name" required>
+            <div style="margin-top: 20px; background: #f9f9f9; padding: 15px; border-radius: 8px;">
+                <label style="font-weight: bold; color: var(--brand-maroon); font-size: 14px;">YOUR NAME:</label>
+                <input type="text" id="customer-name" placeholder="Full Name" style="width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ddd; border-radius: 4px;">
             </div>
             <div id="cart-footer"></div>
         </div>
     </div>
 
     <footer>
-        <p>© 2026 GWAPAFFECTION-CLOTHING | Powered by Gaia</p>
+        <p>© 2026 GWAPAFFECTION-CLOTHING</p>
+        <p style="font-size: 12px; margin-top: 10px;">Premium Kenyan Streetwear</p>
+        <p style="font-size: 12px; margin-top: 5px;">Designed by Gaia</p>
     </footer>
 
     <script>
@@ -350,7 +422,7 @@
 
         function toggleCart() {
             const sidebar = document.getElementById('cart-sidebar');
-            sidebar.style.right = (sidebar.style.right === '0px' || sidebar.style.right === '') ? '-400px' : '0px';
+            sidebar.style.right = (sidebar.style.right === '0px') ? '-100%' : '0px';
         }
 
         function filterProducts() {
@@ -375,7 +447,6 @@
             const size = productDiv.querySelector('.size-select').value;
             const img = productDiv.querySelector('img').src;
 
-            // Check for existing item with same name AND size
             const existing = cart.find(item => item.name === name && item.size === size);
 
             if (existing) {
@@ -411,7 +482,7 @@
             display.innerHTML = '';
 
             if (cart.length === 0) {
-                display.innerHTML = '<p style="text-align:center; margin-top:20px;">Cart is empty.</p>';
+                display.innerHTML = '<p style="text-align:center; padding: 30px 0; color: #999;">Bag is empty.</p>';
                 checkoutSection.style.display = 'none';
                 return;
             }
@@ -421,19 +492,21 @@
             cart.forEach((item, index) => {
                 grandTotal += item.total;
                 display.innerHTML += `
-                    <div style="display:flex; align-items:center; margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:5px;">
-                        <img src="${item.image}" style="width:40px; height:40px; object-fit:cover; margin-right:10px; border-radius: 4px;">
+                    <div style="display:flex; align-items:center; margin-bottom:15px; border-bottom:1px solid #eee; padding-bottom:10px;">
+                        <img src="${item.image}" style="width:50px; height:60px; object-fit:cover; margin-right:15px; border-radius: 4px;">
                         <div style="flex-grow:1;">
-                            <h4 style="font-size:13px; margin:0;">${item.name} (${item.size})</h4>
-                            <p style="font-size:12px; color:maroon;">SH ${item.price} x ${item.quantity}</p>
+                            <h4 style="font-size:14px; margin:0;">${item.name}</h4>
+                            <p style="font-size:12px; color:#666;">Size: ${item.size} | SH ${item.price} x ${item.quantity}</p>
                         </div>
                         <button onclick="removeFromCart(${index})" style="border:none; color:red; cursor:pointer; background:none; font-size:18px;">&times;</button>
                     </div>`;
             });
 
             footer.innerHTML = `
-                <h3 style="display:flex; justify-content:space-between; margin-top:15px;">Total: <span>SH ${grandTotal}</span></h3>
-                <button onclick="sendOrderWhatsApp(${grandTotal})" style="width:100%; padding:15px; background:#25D366; color:white; border:none; border-radius:5px; cursor:pointer; font-weight:bold; margin-top:15px; display:flex; align-items:center; justify-content:center; gap:10px;">
+                <div style="display:flex; justify-content:space-between; margin: 20px 0; font-weight:bold; font-size: 1.2rem;">
+                    <span>Total:</span> <span>SH ${grandTotal}</span>
+                </div>
+                <button onclick="sendOrderWhatsApp(${grandTotal})" style="width:100%; padding:15px; background:#25D366; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:bold; display:flex; align-items:center; justify-content:center; gap:10px; font-size: 16px;">
                     <i class="fab fa-whatsapp"></i> ORDER VIA WHATSAPP
                 </button>
             `;
@@ -441,30 +514,18 @@
 
         function sendOrderWhatsApp(total) {
             const customerName = document.getElementById('customer-name').value;
-            const myNumber = "254797389370";
-
             if (!customerName) {
-                alert("Please enter your name to complete the order.");
+                alert("Please enter your name.");
                 return;
             }
 
-            let message = `👤 *CUSTOMER:* ${customerName.toUpperCase()}\n`;
-            message += `🛍️ *NEW ORDER FROM GWAPAFFECTION*\n\n`;
-
-            cart.forEach((item, index) => {
-                message += `*${index + 1}. ${item.name}*\n`;
-                message += `   Size: ${item.size}\n`;
-                message += `   Qty: ${item.quantity}\n`;
-                message += `   Subtotal: SH ${item.total}\n\n`;
+            let message = `👤 *CUSTOMER:* ${customerName.toUpperCase()}\n🛍️ *ORDER FROM GWAPAFFECTION*\n\n`;
+            cart.forEach((item, idx) => {
+                message += `${idx+1}. ${item.name} (${item.size})\n   Qty: ${item.quantity} | Total: SH ${item.total}\n\n`;
             });
+            message += `*TOTAL AMOUNT: SH ${total}*`;
 
-            message += `--------------------------\n`;
-            message += `*TOTAL AMOUNT: SH ${total}*\n`;
-            message += `--------------------------\n\n`;
-            message += `Please confirm my order and send payment details.`;
-
-            const encodedMsg = encodeURIComponent(message);
-            window.open(`https://wa.me/${myNumber}?text=${encodedMsg}`, '_blank');
+            window.open(`https://wa.me/254797389370?text=${encodeURIComponent(message)}`, '_blank');
         }
     </script>
 </body>
